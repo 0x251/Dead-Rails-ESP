@@ -2,9 +2,33 @@ local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local PlaceName = game:GetService("AssetService"):GetGamePlacesAsync(game.GameId):GetCurrentPage()[1].Name
+local HttpService = game:GetService("HttpService")
 local LocalPlayer = Players.LocalPlayer
 
 getfenv().getgenv().PlaceName = PlaceName
+
+
+local function OpenInvite()
+    local InviteCode = "2sZV8k3B97"
+    local request = (syn and syn.request) or (fluxus and fluxus.request) or (http and http.request) or http_request or request
+    if request then
+        request({
+            Url = "http://127.0.0.1:6463/rpc?v=1",
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json",
+                ["Origin"] = "https://discord.com"
+            },
+            Body = HttpService:JSONEncode({
+                cmd = "INVITE_BROWSER",
+                args = {code = InviteCode},
+                nonce = HttpService:GenerateGUID(false)
+            })
+        })
+    end
+end
+
+OpenInvite()
 
 local Window
 local Esp
