@@ -60,6 +60,11 @@ local function CreateMainWindow()
             Enabled = true,
             FileName = "UNIX-" .. PlaceName
         },
+        Discord = {
+            Enabled = true,
+            Invite = "2sZV8k3B97",
+            RememberJoins = true
+        },
     })
 
     Esp = Window:CreateTab("ESP", "eye")
